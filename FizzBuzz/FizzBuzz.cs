@@ -2,6 +2,7 @@
 
 public interface IFizzBuzz
 {
+    public string GetReplacementString();
     public bool IsDivisible(int divident);
 }
 
@@ -10,16 +11,17 @@ public abstract class FizzBuzzBase : IFizzBuzz
     protected int divisor;
     protected string _replacementString;
 
-    public string replacementString
-    {
-        get { return _replacementString; }
-    }
-
     public FizzBuzzBase(int divisor, string replacementString)
     {
         this.divisor = divisor;
         this._replacementString = replacementString;
     }
+
+    public string GetReplacementString()
+    {
+        return _replacementString;
+    }
+
     public abstract bool IsDivisible(int divident);
 }
 
