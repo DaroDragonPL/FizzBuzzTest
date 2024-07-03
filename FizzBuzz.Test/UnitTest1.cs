@@ -76,4 +76,42 @@ public class UnitTest1
         IFizzBuzz buzz = new Buzz();
         TestFizzBuzzDivisible(buzz);
     }
+
+    [Fact]
+    public void Test_FizzerBuzzer_NoReplacement()
+    {
+        IFizzBuzz fizz = new Fizz();
+        IFizzBuzz buzz = new Buzz();
+        int numFizz = (int)fizz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(fizz);
+        int numBuzz = (int)buzz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(buzz);
+        FizzerBuzzer fb = new FizzerBuzzer(new List<IFizzBuzz> {fizz, buzz});
+        int testnum = numFizz*numBuzz + 1;
+        Assert.Equal(testnum.ToString(), fb.FizzbuzzNumber(testnum));
+    }
+
+    [Fact]
+    public void Test_FizzerBuzzer_SingleReplacement()
+    {
+        IFizzBuzz fizz = new Fizz();
+        IFizzBuzz buzz = new Buzz();
+        int numFizz = (int)fizz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(fizz);
+        int numBuzz = (int)buzz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(buzz);
+        FizzerBuzzer fb = new FizzerBuzzer(new List<IFizzBuzz> {fizz, buzz});
+        Assert.Equal(fizz.GetReplacementString(), fb.FizzbuzzNumber(numFizz));
+        Assert.Equal(buzz.GetReplacementString(), fb.FizzbuzzNumber(numBuzz));
+    }
+
+    [Fact]
+    public void Test_FizzerBuzzer_DoubleReplacement()
+    {
+        IFizzBuzz fizz = new Fizz();
+        IFizzBuzz buzz = new Buzz();
+        int numFizz = (int)fizz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(fizz);
+        int numBuzz = (int)buzz.GetType().GetField(fieldNameDivisor, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(buzz);
+        FizzerBuzzer fb = new FizzerBuzzer(new List<IFizzBuzz> {fizz, buzz});
+        int testnum = numFizz*numBuzz;
+        string result = fb.FizzbuzzNumber(testnum);
+        Assert.Contains(fizz.GetReplacementString(), result);
+        Assert.Contains(buzz.GetReplacementString(), result);
+    }
 }

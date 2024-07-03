@@ -50,3 +50,18 @@ public class Buzz : FizzBuzzBase
         return (divident % divisor == 0);
     }
 }
+
+public class FizzerBuzzer
+{
+    private List<IFizzBuzz> rules;
+
+    public FizzerBuzzer(List<IFizzBuzz> rules)
+    {
+        this.rules = rules;
+    }
+
+    public string FizzbuzzNumber(int number)
+    {
+        return number.ToString();
+    }
+}
