@@ -32,7 +32,7 @@ public class Fizz : FizzBuzzBase
 
     public override bool IsDivisible(int divident)
     {
-        return false;
+        return (divident % divisor == 0);
     }
 }
 
@@ -45,6 +45,6 @@ public class Buzz : FizzBuzzBase
 
     public override bool IsDivisible(int divident)
     {
-        return false;
+        return (divident % divisor == 0);
     }
 }
