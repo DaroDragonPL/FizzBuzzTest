@@ -62,6 +62,18 @@ public class FizzerBuzzer
 
     public string FizzbuzzNumber(int number)
     {
-        return number.ToString();
+        string result = "";
+        foreach (IFizzBuzz rule in rules)
+        {
+            if (rule.IsDivisible(number))
+            {
+                result += rule.GetReplacementString();
+            }
+        }
+        if (result == "")
+        {
+            result = number.ToString();
+        }
+        return result;
     }
 }
